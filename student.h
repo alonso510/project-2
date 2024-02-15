@@ -43,6 +43,7 @@ public:
     // Accessor & mutator of total (score)
     void  ComputeTotal();
     int   GetTotal() const;
+    void   setTotal(int);
 
     // Accessor & mutator of letter grade
     void  ComputeGrade();
