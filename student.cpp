@@ -1,7 +1,7 @@
 #include "student.h"
 #include <iostream>
 #include <cassert>
-#include <fstream>  
+#include <fstream>
 #include <iomanip>
 #include <string>
 #include <algorithm>
@@ -114,7 +114,7 @@ void Student::DisplayInfo() const
     std::cout << "Name: " << name << std::endl;
 
     // Print scores for each ScoreType
-    std::cout << "Scores:" << std::endl;
+
     std::cout << "CLA: " << score[CLA] << std::endl;
     std::cout << "OLA: " << score[OLA] << std::endl;
     std::cout << "QUIZ: " << score[QUIZ] << std::endl;
@@ -131,7 +131,8 @@ std::ostream &operator<<(std::ostream &myout, const Student &s)
 {
     // Output specific information of the student on one row
     myout << std::setw(5) << s.id << std::setw(15) << s.name;
-     for (int i = 0; i < Student::CATEGORY_NUM; ++i) {
+    for (int i = 0; i < Student::CATEGORY_NUM; ++i)
+    {
         myout << std::setw(5) << s.score[i];
     }
 
@@ -139,16 +140,18 @@ std::ostream &operator<<(std::ostream &myout, const Student &s)
 
     return myout;
 }
-std::istream& operator>>(std::istream& myin, Student& s) {
+std::istream &operator>>(std::istream &myin, Student &s)
+{
     // Input student information
     myin >> s.id >> s.name;
-  for (int i = 0; i < Student::CATEGORY_NUM; ++i){
-   
-     myin >> s.score[i];
-  }
+    for (int i = 0; i < Student::CATEGORY_NUM; ++i)
+    {
+
+        myin >> s.score[i];
+    }
     return myin;
 }
-void Student::setTotal(int n){
+void Student::setTotal(int n)
+{
     total = n;
-    
 }
