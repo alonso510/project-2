@@ -19,6 +19,7 @@ public:
     // Create an empty roster, i.e. studentNum = 0 for
     // a specific course
     Roster(string courseName);
+    
 
     // This function reads student information from a file
     // The parameter is a file name
@@ -54,8 +55,8 @@ public:
 private:
     static const int	MAX_NUM = 90;	// The maximum # of students of a class
 					// Class constant. All objects share the same copy
-    string  courseName;	// THe name of the course
+    string  courseName;	// The name of the course
     int	  studentNum;	// Actual Student #
-    Student students[MAX_NUM]; // The array of student objects
+    Student students[MAX_NUM]; // The array of student object
 };
 #endif
