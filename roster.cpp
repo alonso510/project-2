@@ -11,6 +11,10 @@ Roster::Roster(string courseName) : courseName(courseName), studentNum(0)
 {
     // Initialize the roster with no students
 }
+Roster::Roster() : courseName(""), studentNum(0)
+{
+    // Initialize the roster with no students
+}
 void Roster::readStudentRecord(string filename)
 {
     std::ifstream file(filename); // declare file pass in filename
@@ -57,4 +61,31 @@ void Roster::ShowOneStudent(string id) const  {
 
     // If the loop completes without finding a matching student
     std::cout << "Student with ID " << id << " not found." << std::endl;
+}
+ostream & operator<< (ostream & os, const Roster & oneClass) {
+    ifstream inputFile("grades.dat");
+    if (!inputFile) {
+        cerr << "File could not be opened." << endl;
+        return os;
+    } //test to open file
+
+    // Count the number of students in the file
+    int numStudents = 0;
+    string line;
+    while (getline(inputFile, line)) {
+        ++numStudents;
+    }
+    inputFile.clear(); 
+    inputFile.seekg(0); 
+
+    // Output header with the total number of students
+    os << "Here is the information for " << numStudents-2 << " students:" << endl;
+
+    // Output individual student information
+    while (getline(inputFile, line)) {
+        os << line << endl; 
+    }
+
+    inputFile.close();
+    return os;
 }
