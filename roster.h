@@ -14,7 +14,6 @@ using namespace std;
 class Roster
 {
 public:
-
     // a value constructor, the parameter is the course name
     // Create an empty roster, i.e. studentNum = 0 for
     // a specific course
@@ -22,12 +21,12 @@ public:
     Roster();
     // This function reads student information from a file
     // The parameter is a file name
-    // post-condition: 
+    // post-condition:
     //		students contains student information read from the file
-    //		studentNum is the number of students read from the file	
+    //		studentNum is the number of students read from the file
     void readStudentRecord(string filename);
 
-    // This function returns the number of students in the class roster  
+    // This function returns the number of students in the class roster
     // post-condition: the studentNum value is returned
     int GetStudentCount() const;
 
@@ -45,17 +44,17 @@ public:
     // This function prints out all the information (exclude total score and letter grade) for
     // all the students in the class
     // The information is display in a table format, one student per row
-    friend ostream & operator<< (ostream& os, const Roster& oneClass);
+    friend ostream &operator<<(ostream &os, const Roster &oneClass);
     string getclassName() const;
     //*****************************************
-    //Add your functions here if necessary
+    // Add your functions here if necessary
     //*****************************************
 
 private:
-    static const int	MAX_NUM = 90;	// The maximum # of students of a class
-          // Class constant. All objects share the same copy
-    string  courseName;	// THe name of the course
-    int	  studentNum;	// Actual Student #
-    Student students[MAX_NUM]; // The array of student objects
+    static const int MAX_NUM = 90; // The maximum # of students of a class
+                                   // Class constant. All objects share the same copy
+    string courseName;             // THe name of the course
+    int studentNum;                // Actual Student #
+    Student students[MAX_NUM];     // The array of student objects
 };
 #endif

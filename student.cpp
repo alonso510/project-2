@@ -43,6 +43,7 @@ Student &Student::operator=(const Student &s)
     }
     return *this;
 }
+ //getters and setters
 string Student::getID() const
 {
     return id;
@@ -103,7 +104,7 @@ int Student::getScore(ScoreType scoreName) const
 {
     return score[static_cast<int>(scoreName)];
 }
-#include <iostream>
+
 
 // Function to display information of one student
 void Student::DisplayInfo() const
@@ -139,7 +140,8 @@ std::ostream &operator<<(std::ostream &myout, const Student &s)
     myout << std::endl;
 
     return myout;
-}
+} 
+//  insertion operator overload
 std::istream &operator>>(std::istream &myin, Student &s)
 {
     // Input student information
