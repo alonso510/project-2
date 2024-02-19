@@ -46,7 +46,7 @@ public:
     // all the students in the class
     // The information is display in a table format, one student per row
     friend ostream & operator<< (ostream& os, const Roster& oneClass);
-
+    string getclassName() const;
     //*****************************************
     //Add your functions here if necessary
     //*****************************************

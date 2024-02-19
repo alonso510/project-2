@@ -17,14 +17,21 @@ Roster::Roster() : courseName(""), studentNum(0)
 }
 void Roster::readStudentRecord(string filename)
 {
-    std::ifstream file(filename); // declare file pass in filename
+   
+    std::ifstream file; // declare file pass in filename
     file.open(filename);          // open file
-    file >> courseName;
-    std::string header;
-    std::getline(file, header);
+
+    std::string line;
+      for(int i = 0; i < 2; ++i){ // for loop to skip first two lines 
+        std::getline(file, line);
+      }
+  
     while (file)
     {                                 // iterate through file
         file >> students[studentNum]; // store className
+        students[studentNum].ComputeTotal();
+        students[studentNum].ComputeGrade();
+     
         studentNum++;
     }
     file.close(); // close file
@@ -46,30 +53,38 @@ bool Roster::isValid(string id) const
 return false; 
 }
 void Roster::ShowOneStudent(string id) const  {
-    while (!isValid(id)) {
-        std::cout << "Enter a valid class ID: ";
+    std:: cout << "Enter a valid class ID: ";
+    std::cin >> id;
+    std::cout << std::endl;
+    while(isValid(id) == false){
+        std:: cout << "Enter a valid class ID: ";
         std::cin >> id;
-        std::cout << endl;
+        std::cout << std::endl;
     }
-
+    
     for (int i = 0; i < studentNum; i++) {
         if (students[i].getID() == id) {
             students[i].DisplayInfo();
-            return; // Exit the function after displaying information for the matching student
+            break;// Exit the function after displaying information for the matching student
         }
     }
 
+  
+
     // If the loop completes without finding a matching student
-    std::cout << "Student with ID " << id << " not found." << std::endl;
+   
+}
+    string Roster::getclassName() const {
+    return courseName;
 }
 ostream & operator<< (ostream & os, const Roster & oneClass) {
     ifstream inputFile("grades.dat");
     if (!inputFile) {
         cerr << "File could not be opened." << endl;
         return os;
-    } //test to open file
+    } 
 
-    // Count the number of students in the file
+    
     int numStudents = 0;
     string line;
     while (getline(inputFile, line)) {
@@ -78,8 +93,8 @@ ostream & operator<< (ostream & os, const Roster & oneClass) {
     inputFile.clear(); 
     inputFile.seekg(0); 
 
-    // Output header with the total number of students
-    os << "Here is the information for " << numStudents-2 << " students:" << endl;
+    
+    os << "Here is the information for " << numStudents-2 << " students in class " << oneClass.getclassName() << endl;
 
     // Output individual student information
     while (getline(inputFile, line)) {

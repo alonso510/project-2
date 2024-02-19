@@ -7,9 +7,11 @@
 #include "roster.cpp"
 int main()
 {
+
   Roster test; 
   std::string filename = "grades.dat";
   test.readStudentRecord(filename);
+  std::cout << test << std::endl;
   std::string id;
   test.ShowOneStudent(id);
 
